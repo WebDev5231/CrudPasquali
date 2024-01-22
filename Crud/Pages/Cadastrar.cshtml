@@ -1,0 +1,53 @@
+﻿@page
+@model CRUD.Pages.CadastroModel
+
+<h1><b>Cadastrar</b></h1>
+
+<p><b>Cadastro de Usuário</b></p>
+
+<div class="container">
+    @if (!string.IsNullOrEmpty(Model.StatusMensagem))
+    {
+        <div class="alert alert-success" role="alert">
+            @Model.StatusMensagem
+        </div>
+    }
+
+    <form method="post">
+        <div class="form-group">
+            <label for="NomeCompleto"><b>Nome Completo:</b></label>
+            <input type="text" class="form-control" id="NomeCompleto" name="NomeCompleto" placeholder="Digite o nome completo" required>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="DataNascimento"><b>Data de Nascimento:</b></label>
+            <input type="text" class="form-control" id="DataNascimento" name="DataNascimento" placeholder="DD/MM/AAAA" required>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="ValorRenda"><b>Valor da Renda:</b></label>
+            <input type="text" class="form-control" id="ValorRenda" name="ValorRenda" placeholder="R$" data-type="currency" required>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="CPF"><b>CPF:</b></label>
+            <input type="text" class="form-control" id="CPF" name="CPF" placeholder="Digite o CPF" required>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/5.x/dist/jquery.inputmask.js"></script>
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/5.x/dist/bindings/inputmask.binding.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DataNascimento').inputmask('99/99/9999');
+            $('#ValorRenda').inputmask('currency', { 'autoUnmask': true, 'rightAlign': false });
+            $('#CPF').inputmask('999.999.999-99');
+        });
+    </script>
+}
